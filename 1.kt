@@ -25,6 +25,20 @@ fun main() {
 	println("Printing fibMap")
 
 	printMapItems(fibMap)
+
+	//declare an array of FibItem objects
+	var fibItemArray = ArrayList<FibItem>()
+
+	for ((index, item) in fibItems.withIndex()) {
+		// fibItemArray.set(index, FibItem(index, item, fib(item)))
+		fibItemArray.add(FibItem(index, item, fib(item)))
+	}
+
+	for (fibItem: FibItem in fibItemArray) {
+		println(fibItem.toString())
+
+		println("Index: ${fibItem.index} Value: ${fibItem.n} Fib: ${fibItem.fib}")
+	}
 }
 
 fun sanitize(s: String): String {
@@ -64,5 +78,12 @@ fun convertToMap(items: Array<Int>): Map<Int, Int> {
 fun printMapItems(map: Map<Int, Int>) {
 	for ((key, value) in map) {
 		println("$key: $value")
+	}
+}
+
+class FibItem(val index: Int, val n: Int, val fib: Int) {
+
+	override fun toString(): String {
+		return "Stringified: Index: $index Value: $n Fib: $fib"
 	}
 }
